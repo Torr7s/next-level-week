@@ -1,21 +1,34 @@
 /* .--..--..--..--..--.. MENU ..--..--..--..--..--.. */
 
 function closeMenu() {
-  document.body.classList.remove('menu-expanded')
+  document.body.classList.remove('menu-expanded');
 }
 
 function openMenu() {
-  document.body.classList.add('menu-expanded')
+  document.body.classList.add('menu-expanded');
 }
 
 /* .--..--..--..--..--.. NAVIGATION ..--..--..--..--..--.. */
 
+window.addEventListener('scroll', onScroll);
+
+onscroll();
+
 function onScroll() {
-  if (scrollY > 0) {
-    navigation.classList.add('scroll')
-  } else {
-    navigation.classList.remove('scroll')
-  }
+  showNavOnScroll();
+  showBackToTopButtonOnScroll();
+}
+
+function showNavOnScroll() {
+  scrollY > 0
+    ? navigation.classList.add('scroll')
+    : navigation.classList.remove('scroll');
+}
+
+function showBackToTopButtonOnScroll() {
+  scrollY > 500
+    ? backToTopButton.classList.add('show')
+    : backToTopButton.classList.remove('show');
 }
 
 const revealSettings = {
@@ -34,4 +47,4 @@ ScrollReveal(revealSettings).reveal(`
   #about,
   #about header,
   #about .content
-`)
+`);
